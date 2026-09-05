@@ -11,7 +11,23 @@ sounds.forEach((sound) => {
 
     // set the button label text to the same as the string in the sounds array
     btn.innerText = sound;
+   
+    // add an event listener to the button that will play the sound when clicked
+     btn.addEventListener('click', () => {
+        // stop all sounds before playing the new sound
+        stopSounds();
+        document.getElementById(sound).play();
+    });
 
     // add the button to the DOM, inside the div with an id of 'buttons'
     document.getElementById('buttons').appendChild(btn);
 });
+// helper function to play the sound when the button is clicked
+function stopSounds() {
+    sounds.forEach((sound) => {
+        const song = document.getElementById(sound);
+
+        song.pause();
+        song.currentTime = 0;
+    });
+}
